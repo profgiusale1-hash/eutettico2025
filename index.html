@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Diagramma Eutettico</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <h2>Diagramma eutettico interattivo</h2>
+  <div id="grafico" style="width:100%;max-width:900px;height:600px;"></div>
+
+  <script>
+    // Composizione in % (X)
+    var composizione = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+    // Curve di esempio
+    var liquidus  = [1200, 1150, 1100, 1050, 1000, 950, 900, 850, 800, 750, 700];
+    var solidus   = [1000, 975, 950, 925, 900, 875, 850, 825, 800, 775, 750];
+    var eutettico = [800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800]; // linea orizzontale
+
+    // Tracce Plotly
+    var traceLiquidus = {
+      x: composizione,
+      y: liquidus,
+      mode: 'lines+markers',
+      name: 'Liquidus',
+      line: {color: 'red', width: 3}
+    };
+
+    var traceSolidus = {
+      x: composizione,
+      y: solidus,
+      mode: 'lines+markers',
+      name: 'Solidus',
+      line: {color: 'blue', width: 3}
+    };
+
+    var traceEutettico = {
+      x: composizione,
+      y: eutettico,
+      mode: 'lines',
+      name: 'Eutettico',
+      line: {color: 'green', width: 3, dash: 'dash'}
+    };
+
+    var layout = {
+      title: 'Diagramma eutettico interattivo',
+      xaxis: {title: 'Composizione (%)'},
+      yaxis: {title: 'Temperatura (°C)'}
+    };
+
+    Plotly.newPlot('grafico', [traceLiquidus, traceSolidus, traceEutettico], layout);
+  </script>
+</body>
+</html>
